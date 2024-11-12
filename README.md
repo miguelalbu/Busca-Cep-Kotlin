@@ -9,11 +9,10 @@ Este projeto consiste em um **aplicativo Android** que permite ao usuário reali
 ## 🖼️ Prints do Aplicativo
 
 ### Tela de Busca de CEP
-![Tela de Busca de CEP](images/tela_busca_cep.jpg)
+<img src="images/tela_busca_cep.png" width="400"/>
 
 ### Resultado da Busca
-![Resultado da Busca](images/resultado_busca.jpg)
-
+<img src="images/tela_busca_cep.png" width="400"/>
 ---
 
 ## 🎯 Funcionalidades
