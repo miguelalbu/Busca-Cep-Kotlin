@@ -12,7 +12,7 @@ Este projeto consiste em um **aplicativo Android** que permite ao usuário reali
 <img src="images/tela_busca_cep.jpg" width="400"/>
 
 ### Resultado da Busca
-<img src="images/tela_busca_cep.jpg" width="400"/>
+<img src="images/resultado_busca.jpg" width="400"/>
 ---
 
 ## 🎯 Funcionalidades
