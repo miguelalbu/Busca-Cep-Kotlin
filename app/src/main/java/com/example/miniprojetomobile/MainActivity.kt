@@ -112,11 +112,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonExport.setOnClickListener {
-            // Verifica se a permissão é necessária ou se o dispositivo usa Android 10 ou superior (Scoped Storage)
+            
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q || isPermissionGranted()) {
-                exportToCsvAndShare() // Exporta o CSV e compartilha
+                exportToCsvAndShare() 
             } else {
-                requestStoragePermission() // Solicita permissão de armazenamento para versões mais antigas
+                requestStoragePermission() 
             }
         }
 
@@ -177,10 +177,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun isPermissionGranted(): Boolean {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            // Scoped Storage não exige permissão
+
             true
         } else {
-            // Verifica permissão para versões anteriores ao Android 10
+
             ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -206,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         val savedData = databaseHelper.getAllJsonData()
 
         try {
-            // Cria o arquivo CSV no diretório de arquivos externos privados do app
+
             val file = File(getExternalFilesDir(null), "cep_data.csv")
             val writer = FileWriter(file)
 
@@ -225,7 +225,7 @@ class MainActivity : AppCompatActivity() {
             writer.flush()
             writer.close()
 
-            // Após salvar o arquivo, chamar a função de compartilhamento
+
             shareCsv(file)
         } catch (e: Exception) {
             Toast.makeText(this, "Erro ao exportar dados: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -235,23 +235,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun shareCsv(file: File) {
         try {
-            // Obtém a URI para o arquivo usando o FileProvider
+
             val uri: Uri = FileProvider.getUriForFile(
                 this,
                 "${packageName}.fileprovider",
                 file
             )
 
-            // Cria um intent para compartilhar o arquivo CSV
+
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/csv"
-                putExtra(Intent.EXTRA_STREAM, uri) // Anexa o arquivo
+                putExtra(Intent.EXTRA_STREAM, uri)
                 putExtra(Intent.EXTRA_SUBJECT, "Arquivo CSV")
                 putExtra(Intent.EXTRA_TEXT, "Segue em anexo o arquivo CSV.")
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Concede permissão para ler o arquivo
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
 
-            // Inicia a atividade para compartilhar o arquivo
+
             startActivity(Intent.createChooser(intent, "Compartilhar CSV via:"))
         } catch (e: Exception) {
             Toast.makeText(this, "Erro ao compartilhar o arquivo: ${e.message}", Toast.LENGTH_SHORT).show()
